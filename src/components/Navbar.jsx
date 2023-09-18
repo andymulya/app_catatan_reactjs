@@ -6,7 +6,7 @@ import CatatanList from "./CatatanList"
 
 
 const Navbar = () => {
-    const catatan = useSelector((state) => state.catatan)
+    const catatan = useSelector((state) => state.catatan.datas)
     const search = useSelector((state) => state.search)
 
     const resultArsip = filterSearch(catatan, search, true)

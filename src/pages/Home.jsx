@@ -8,7 +8,7 @@ import { filterSearch } from "../utils"
 import ModalAddCatatan from "../components/ModalAddCatatan"
 
 export default function Home(){
-    const catatan = useSelector((state) => state.catatan)
+    const catatan = useSelector((state) => state.catatan.datas)
     const search = useSelector((state) => state.search)
     const resultCatatan = filterSearch(catatan, search, false)
  
@@ -24,12 +24,11 @@ export default function Home(){
                     <ModalAddCatatan />
                 </div>
             </div>
-            <div className="flex flex-col items-center gap-16 py-10 px-14 z-10">
+            <div className="flex flex-col items-center gap-16 py-10 px-10 sm:px-14 z-10">
                 <TitleContent title={"Daftar Catatan"} />
 
                 <Search />
 
-                {/* Daftar catatan */}
                 <div className="card shadow-md w-full max-h-[560px] bg-base-100 p-10 overflow-scroll">
                     <CatatanList datas={resultCatatan} />
                 </div>

@@ -7,11 +7,11 @@ const CardItem = ({children}) => {
     )
 }
 
-const Body = ({ title, createdAt }) => {
+const Body = ({ title, createdAt, handleOnClick }) => {
     return(
         <div>
-            <h1 className="font-semibold hover:text-cyan-600 cursor-pointer">{title}</h1>
-            <p className="text-sm text-slate-500">{createdAt}</p>
+            <h1 className="font-semibold hover:text-cyan-600 cursor-pointer" onClick={handleOnClick} >{title}</h1>
+            <p className="text-xs text-slate-500">{createdAt}</p>
         </div>
     )
 }
