@@ -3,6 +3,7 @@ import { useState } from "react"
 import TextInput from "./TextInput"
 import { showFormattedDate } from "../utils"
 import { addData } from "../redux/slices/catatanSlice"
+import TextArea from "./TextArea"
 
 const FormAddCatatan = () => {
     const [isError, setIsError] = useState(false)
@@ -21,9 +22,16 @@ const FormAddCatatan = () => {
     const handleAddCatatan = (e) => {
         const [ title, body ] = e.target
         e.preventDefault()
-        if(title.value.length > 0 && title.value.length <= 35 ){
-            dispatch(addData(data(title.value, body.value)))
+        try{
+            if(title.value.length > 0 && title.value.length <= 35 ){
+                dispatch(addData(data(title.value, body.value)))
+                title.value = ""
+                body.value = ""
+            }
+        }catch(e){
+            console.error(e.message)
         }
+
     }
 
     return(
@@ -32,7 +40,8 @@ const FormAddCatatan = () => {
             {
                 (isError) && <p className="text-sm text-center text-red-500">Harap masukkan judul dan harus lebih 20 karakter</p>
             }
-            <TextInput id={"body"} name={"Kalimat"} />
+            {/* <TextInput id={"body"} name={"Kalimat"} /> */}
+            <TextArea id={"body"} name={"Kalimat"} />
             <button className="btn btn-info w-full text-white">Tambah Catatan</button>
         </form>
     )
