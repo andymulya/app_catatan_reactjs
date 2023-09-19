@@ -4,11 +4,13 @@ import { getDetail, removeItemById } from "../redux/slices/catatanSlice"
 import { isArchived } from "../redux/slices/catatanSlice"
 import CardItem from "./CardItem"
 import ModalDetailCatatan from "./ModalDetailCatatan"
+import ButtonDiv from "./ButtonDiv"
 
 const CatatanList = ({ datas }) => {
     const dispatch = useDispatch()
 
     const handleArsip = (id) => dispatch(isArchived(id))
+    const handleDelete = (id) => dispatch(removeItemById(id))
 
     const handleDetailCatatan = (id) => {
         dispatch(getDetail(id))
@@ -24,13 +26,12 @@ const CatatanList = ({ datas }) => {
                         <CardItem>
                             <CardItem.Body title={data.title} createdAt={data.createdAt} handleOnClick={() => handleDetailCatatan(data.id)} />
                             <CardItem.Actions>
-                                <div className="btn btn-xs bg-red-600 text-white" onClick={() => dispatch(removeItemById(data.id))}>Hapus</div>
-                                <div className="btn btn-xs btn-outline text-cyan-600" onClick={() => handleArsip(data.id)}>Arsip</div>
+                                <ButtonDiv style={"btn btn-xs bg-red-600 text-white"} name={"Hapus"} handleOnClick={() => handleDelete(data.id) } />
+                                <ButtonDiv style={"btn btn-xs btn-outline text-cyan-600"} name={"Arsip"} handleOnClick={() => handleArsip(data.id)} />
                             </CardItem.Actions>
                         </CardItem>
-                        {
-                            <ModalDetailCatatan data={data} />
-                        }
+                        
+                        <ModalDetailCatatan data={data} />
                     </div>
                 )
             })
