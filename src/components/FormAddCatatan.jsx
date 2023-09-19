@@ -38,9 +38,8 @@ const FormAddCatatan = () => {
         <form onSubmit={handleAddCatatan} onChange={(e) => (e.currentTarget.title.value.length > 0 && e.currentTarget.title.value.length <= 35) ? setIsError(false) : setIsError(true)} className="flex flex-col gap-5 my-10">
             <TextInput id={"title"} name={"Judul"} />
             {
-                (isError) && <p className="text-sm text-center text-red-500">Harap masukkan judul dan harus lebih 20 karakter</p>
+                (isError) && <p className="text-xs text-center text-red-500">Harap masukkan judul dan harus lebih 20 karakter</p>
             }
-            {/* <TextInput id={"body"} name={"Kalimat"} /> */}
             <TextArea id={"body"} name={"Kalimat"} />
             <button className="btn btn-info w-full text-white">Tambah Catatan</button>
         </form>
